@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="ui card">
+    <h1>TEAM GENERATOR</h1>
+    <ul class="list">
+      <li *ngFor="let member of members">{{member}}</li>
+    </ul>
+    <div class="add-members">
+      <input type="text"
+      [value]="newMemberName" 
+      #addppl
+      (input) = "getinput(addppl.value)"
+      placeholder="name"/>
+      <button (click)="addMember()">Add</button>
+    </div>
+    <div class="generate-members ">
+      <input type="text" 
+      [value]="noofteams" 
+      #addteam
+      (input) = "getteaminput(addteam.value)"
+      placeholder="number of teams"/>
+      <button (click)="generateteams()">Generate</button>
+    </div>
+    <p *ngIf="errormsg" class="error-msg">{{errormsg}}</p>
+  </div>
+  <div *ngIf="teams.length" class="teams-container">
+    <div *ngFor="let team of teams; let i = index" class="team-container">
+      <h3>team {{i+1}}</h3>
+      <ul>
+        <li *ngFor="let member of team">{{member}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--pipes are used to format data
+container are used to reduce code size by creating new component files
+-->
